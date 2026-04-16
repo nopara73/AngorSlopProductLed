@@ -9,11 +9,11 @@
     <meta http-equiv="Expires" content="0">
     <meta
       name="description"
-      content="A product-led landing page demo for Angor: Bitcoin-native crowdfunding with milestone escrow, backer approvals, and serious project workflows."
+      content="Angor is decentralized Kickstarter on Bitcoin: clean milestone-based funding, visible treasury control, and proof-driven releases."
     >
     <script>
       (function () {
-        var buildId = "611b781-lean";
+        var buildId = "reset-minimal-v1";
         var url = new URL(window.location.href);
         if (url.searchParams.get("v") === buildId) {
           return;
@@ -25,26 +25,23 @@
     <style>
       :root {
         color-scheme: dark;
-        --bg: #06070b;
-        --bg-elevated: #0b0d14;
-        --surface: rgba(15, 19, 28, 0.82);
-        --surface-strong: #0d1017;
-        --surface-soft: rgba(255, 255, 255, 0.04);
-        --line: rgba(255, 255, 255, 0.09);
-        --line-strong: rgba(255, 255, 255, 0.16);
-        --text: #f5f7fb;
-        --muted: #a5adbf;
-        --muted-strong: #c7cede;
-        --accent: #9b8cff;
-        --accent-soft: rgba(155, 140, 255, 0.18);
-        --accent-2: #55d6ff;
-        --success: #4ade80;
-        --warning: #fbbf24;
-        --radius-xl: 28px;
+        --bg: #171717;
+        --bg-soft: #1e1e1e;
+        --panel: #1b1c1d;
+        --panel-soft: rgba(255, 255, 255, 0.03);
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(255, 255, 255, 0.14);
+        --text: #f4f5f7;
+        --muted: #a6aaad;
+        --muted-strong: #c7cbcf;
+        --accent: #70be80;
+        --accent-deep: #5ea56d;
+        --accent-soft: rgba(112, 190, 128, 0.18);
+        --warning: #ecb84a;
+        --radius-xl: 32px;
         --radius-lg: 22px;
         --radius-md: 16px;
-        --shadow-lg: 0 24px 90px rgba(0, 0, 0, 0.45);
-        --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.32);
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
       }
 
       * {
@@ -60,9 +57,8 @@
         min-height: 100vh;
         font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(85, 214, 255, 0.12), transparent 28%),
-          radial-gradient(circle at 80% 12%, rgba(155, 140, 255, 0.16), transparent 24%),
-          linear-gradient(180deg, #07080d 0%, #06070b 55%, #090b11 100%);
+          radial-gradient(circle at 50% 30%, rgba(112, 190, 128, 0.09), transparent 18%),
+          linear-gradient(180deg, #181818 0%, #171717 100%);
         color: var(--text);
       }
 
@@ -71,433 +67,326 @@
         text-decoration: none;
       }
 
-      img {
-        max-width: 100%;
-        display: block;
-      }
-
-      .page-shell {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .page-shell::before,
-      .page-shell::after {
-        content: "";
-        position: absolute;
-        border-radius: 999px;
-        filter: blur(80px);
-        pointer-events: none;
-        opacity: 0.55;
-      }
-
-      .page-shell::before {
-        width: 420px;
-        height: 420px;
-        top: 90px;
-        right: -120px;
-        background: rgba(155, 140, 255, 0.16);
-      }
-
-      .page-shell::after {
-        width: 320px;
-        height: 320px;
-        top: 760px;
-        left: -100px;
-        background: rgba(85, 214, 255, 0.12);
-      }
-
       .container {
-        width: min(1180px, calc(100% - 40px));
+        width: min(1160px, calc(100% - 32px));
         margin: 0 auto;
       }
 
-      .topbar-wrap {
+      .site-header {
         position: sticky;
         top: 0;
-        z-index: 40;
+        z-index: 30;
         backdrop-filter: blur(18px);
-        background: rgba(6, 7, 11, 0.72);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(23, 23, 23, 0.78);
       }
 
-      .topbar {
+      .header-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-height: 78px;
-        gap: 24px;
+        min-height: 72px;
+        gap: 20px;
       }
 
-      .brand {
-        display: inline-flex;
+      .brand-row,
+      .nav-row,
+      .network-pill,
+      .hero-actions,
+      .button,
+      .stage-tabs,
+      .meta-row,
+      .mini-row,
+      .signal-strip,
+      .signal-card {
+        display: flex;
         align-items: center;
-        gap: 14px;
-        font-size: 0.92rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+      }
+
+      .brand-row {
+        gap: 12px;
       }
 
       .brand-mark {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
         display: grid;
         place-items: center;
-        background:
-          linear-gradient(145deg, rgba(155, 140, 255, 0.32), rgba(85, 214, 255, 0.14)),
-          rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        background: linear-gradient(180deg, #79cb8b, #67b579);
+        color: #101010;
         font-size: 0.95rem;
+        font-weight: 800;
+        box-shadow: 0 0 24px rgba(112, 190, 128, 0.18);
       }
 
-      .topnav {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        color: var(--muted);
-        font-size: 0.94rem;
+      .brand-name {
+        font-size: 0.98rem;
+        font-weight: 600;
       }
 
-      .topnav a:hover {
-        color: var(--text);
+      .network-pill {
+        gap: 8px;
+        color: var(--muted-strong);
+        font-size: 0.84rem;
       }
 
-      .topnav-cta {
-        padding: 12px 16px;
+      .network-pill::before {
+        content: "";
+        width: 7px;
+        height: 7px;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--warning);
+        box-shadow: 0 0 16px rgba(236, 184, 74, 0.55);
+      }
+
+      .nav-row {
+        gap: 22px;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .nav-row a:hover {
         color: var(--text);
-        background: rgba(255, 255, 255, 0.04);
       }
 
       .hero {
-        padding: 88px 0 44px;
+        padding: 36px 0 52px;
       }
 
-      .hero-grid {
+      .hero-shell {
+        min-height: calc(100vh - 72px);
         display: grid;
-        grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-        gap: 48px;
         align-items: center;
       }
 
-      .eyebrow {
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-badge {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        padding: 8px 12px;
+        padding: 10px 14px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
         color: var(--muted-strong);
         font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
-      .eyebrow::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 0 18px rgba(155, 140, 255, 0.8);
+      .hero-logo {
+        width: 76px;
+        height: 76px;
+        margin: 88px auto 28px;
+        border-radius: 22px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #78cb8b, #66b779);
+        color: #111;
+        font-size: 2rem;
+        font-weight: 900;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.06),
+          0 0 60px rgba(112, 190, 128, 0.22);
       }
 
       h1 {
-        margin: 22px 0 18px;
-        font-size: clamp(3.8rem, 8vw, 6.7rem);
-        line-height: 0.96;
+        max-width: 900px;
+        margin: 0 auto;
+        font-size: clamp(3rem, 8vw, 5.2rem);
+        line-height: 0.98;
         letter-spacing: -0.06em;
       }
 
-      .hero-copy p {
-        max-width: 620px;
-        margin: 0;
+      .hero-accent {
+        color: var(--accent);
+        font-style: italic;
+      }
+
+      .hero-subtitle {
+        max-width: 630px;
+        margin: 22px auto 0;
         color: var(--muted);
-        font-size: 1.12rem;
-        line-height: 1.7;
+        font-size: 1.02rem;
+        line-height: 1.6;
       }
 
       .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 30px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
         justify-content: center;
-        gap: 10px;
-        min-height: 52px;
-        padding: 0 20px;
-        border-radius: 999px;
-        font-size: 0.96rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .button:hover,
-      .topnav-cta:hover,
-      .card:hover,
-      .mini-card:hover,
-      .metric-card:hover,
-      .workflow-card:hover {
-        transform: translateY(-2px);
-      }
-
-      .button-primary {
-        color: #0a0a0f;
-        background: linear-gradient(135deg, #ffffff, #d8e0ff 62%, #8bdfff);
-        box-shadow: 0 10px 30px rgba(176, 197, 255, 0.25);
-      }
-
-      .button-secondary {
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .hero-metrics {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
         margin-top: 34px;
       }
 
-      .metric-card,
-      .card,
-      .mini-card,
-      .workflow-card,
-      .feature-card,
-      .cta-panel {
+      .button {
+        justify-content: center;
+        gap: 10px;
+        min-height: 52px;
+        padding: 0 20px;
+        border-radius: 14px;
+        border: 1px solid var(--line-strong);
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .button-primary {
+        background: linear-gradient(180deg, #74c786, #649f72);
+        color: #121212;
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--text);
+      }
+
+      .product-stage {
+        margin-top: 56px;
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
-          var(--surface);
+          linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
+          var(--panel);
         border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-md);
-      }
-
-      .metric-card {
-        padding: 16px 18px;
-      }
-
-      .metric-card strong {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 1.02rem;
-        letter-spacing: -0.02em;
-      }
-
-      .metric-card span {
-        color: var(--muted);
-        font-size: 0.92rem;
-        line-height: 1.5;
-      }
-
-      .app-window {
-        position: relative;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
-          rgba(10, 12, 18, 0.96);
-        border: 1px solid rgba(255, 255, 255, 0.11);
-        border-radius: 30px;
-        box-shadow: var(--shadow-lg);
+        border-radius: var(--radius-xl);
         overflow: hidden;
+        box-shadow: var(--shadow);
       }
 
-      .app-window::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 24%);
-      }
-
-      .window-bar {
+      .stage-topbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        gap: 18px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
         background: rgba(255, 255, 255, 0.02);
       }
 
-      .window-dots {
+      .stage-dots {
         display: flex;
         gap: 8px;
       }
 
-      .window-dots span {
+      .stage-dots span {
         width: 10px;
         height: 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.14);
       }
 
-      .window-title {
+      .stage-title {
         color: var(--muted);
         font-size: 0.84rem;
       }
 
-      .hero-product {
-        display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
-        min-height: 640px;
+      .stage-tabs {
+        gap: 8px;
       }
 
-      .sidebar {
-        padding: 22px 18px;
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01));
-      }
-
-      .sidebar-label,
-      .meta-kicker,
-      .panel-label {
-        color: var(--muted);
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .sidebar-group {
-        margin-top: 22px;
-      }
-
-      .sidebar-item,
-      .campaign-row,
-      .feed-row,
-      .check-row,
-      .roadmap-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-      }
-
-      .sidebar-item {
-        padding: 11px 12px;
-        border-radius: 14px;
-        color: var(--muted-strong);
-        margin-top: 8px;
-        background: transparent;
-      }
-
-      .sidebar-item.active {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .count-pill,
-      .status-pill,
-      .tag,
-      .small-pill {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 26px;
-        padding: 0 10px;
+      .stage-tab {
+        padding: 8px 12px;
         border-radius: 999px;
-        font-size: 0.76rem;
-        font-weight: 600;
-        white-space: nowrap;
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.82rem;
       }
 
-      .count-pill,
-      .small-pill {
+      .stage-tab.active {
         background: rgba(255, 255, 255, 0.06);
-        color: var(--muted-strong);
+        color: var(--text);
       }
 
-      .canvas {
-        padding: 24px;
+      .stage-body {
+        padding: 22px;
+      }
+
+      .stage-grid {
         display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
         gap: 18px;
-        background:
-          radial-gradient(circle at 100% 0, rgba(155, 140, 255, 0.08), transparent 24%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0));
+      }
+
+      .panel,
+      .signal-card {
+        background: var(--panel-soft);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
       }
 
       .panel {
-        padding: 22px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        border-radius: 22px;
+        padding: 20px;
       }
 
-      .hero-header {
+      .panel-kicker,
+      .label {
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .campaign-head {
+        margin-top: 14px;
         display: flex;
         align-items: start;
         justify-content: space-between;
         gap: 16px;
       }
 
-      .hero-header h2,
-      .section-head h2,
-      .cta-panel h2 {
-        margin: 10px 0 0;
-        letter-spacing: -0.05em;
+      .campaign-head h2,
+      .compact-card h3,
+      .signal-card strong {
+        margin: 0;
+        letter-spacing: -0.04em;
       }
 
-      .hero-header h2 {
+      .campaign-head h2 {
         font-size: 2rem;
       }
 
-      .hero-header p,
-      .section-head p,
-      .feature-card p,
-      .mini-card p,
-      .card p,
-      .workflow-card p,
-      .cta-panel p {
-        color: var(--muted);
-        line-height: 1.6;
+      .status-chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: #c9f1d3;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid rgba(112, 190, 128, 0.16);
       }
 
-      .status-pill {
-        color: #eaf3ff;
-        background: linear-gradient(135deg, rgba(85, 214, 255, 0.22), rgba(155, 140, 255, 0.22));
-        border: 1px solid rgba(255, 255, 255, 0.08);
+      .meta-row {
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
       }
 
-      .hero-panel-grid {
+      .mini-pill {
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted-strong);
+        font-size: 0.8rem;
+      }
+
+      .milestones {
+        margin-top: 22px;
         display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-        gap: 18px;
+        gap: 12px;
       }
 
-      .stack {
-        display: grid;
-        gap: 18px;
-      }
-
-      .milestone-card {
-        padding: 18px;
+      .milestone {
+        padding: 16px;
         border-radius: 18px;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.06);
-        margin-top: 14px;
-      }
-
-      .milestone-card:first-of-type {
-        margin-top: 18px;
       }
 
       .milestone-top {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 10px;
+        gap: 14px;
       }
 
       .milestone-title {
@@ -505,8 +394,15 @@
         font-weight: 600;
       }
 
+      .milestone-meta {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
       .bar {
         height: 8px;
+        margin-top: 12px;
         border-radius: 999px;
         overflow: hidden;
         background: rgba(255, 255, 255, 0.06);
@@ -516,859 +412,334 @@
         display: block;
         height: 100%;
         border-radius: inherit;
-        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        background: linear-gradient(90deg, #7bcb8c, #5f9e6d);
       }
 
-      .milestone-meta,
-      .subtle-row {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        color: var(--muted);
-        font-size: 0.86rem;
+      .side-stack {
+        display: grid;
+        gap: 18px;
       }
 
-      .tag {
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--muted-strong);
-      }
-
-      .panel h3,
-      .card h3,
-      .mini-card h3,
-      .workflow-card h3,
-      .feature-card h3 {
-        margin: 0;
-        font-size: 1.04rem;
-        letter-spacing: -0.03em;
-      }
-
-      .treasury-number {
-        margin: 12px 0 6px;
-        font-size: 2.4rem;
+      .big-number {
+        margin: 10px 0 0;
+        font-size: 2.8rem;
         font-weight: 700;
         letter-spacing: -0.06em;
       }
 
-      .treasury-breakdown {
+      .breakdown {
+        margin-top: 20px;
         display: grid;
         gap: 12px;
-        margin-top: 18px;
       }
 
-      .fund-row {
+      .breakdown-row,
+      .vote-row {
         display: grid;
-        grid-template-columns: 120px 1fr auto;
+        grid-template-columns: 86px 1fr auto;
         align-items: center;
         gap: 10px;
-        font-size: 0.9rem;
+        font-size: 0.86rem;
       }
 
-      .feed {
-        display: grid;
-        gap: 12px;
-        margin-top: 16px;
+      .vote-card h3,
+      .compact-card h3 {
+        margin-top: 12px;
+        font-size: 1.25rem;
       }
 
-      .feed-row {
-        padding: 12px 14px;
-        border-radius: 15px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        align-items: start;
-      }
-
-      .feed-row strong,
-      .campaign-row strong,
-      .roadmap-row strong {
-        display: block;
-        font-size: 0.94rem;
-      }
-
-      .feed-row span,
-      .campaign-row span,
-      .roadmap-row span {
-        color: var(--muted);
-        font-size: 0.84rem;
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        margin-top: 4px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        flex: 0 0 auto;
-      }
-
-      .campaign-list {
-        display: grid;
-        gap: 12px;
-        margin-top: 16px;
-      }
-
-      .campaign-row {
-        padding: 12px 14px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .campaign-row .small-pill {
-        background: rgba(74, 222, 128, 0.1);
-        color: #b8f2ca;
-      }
-
-      .workflow {
-        padding: 26px 0 28px;
-      }
-
-      .workflow-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .workflow-card {
-        padding: 20px;
-      }
-
-      .workflow-card strong {
-        display: inline-flex;
-        width: 34px;
-        height: 34px;
-        border-radius: 12px;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 18px;
-        font-size: 0.88rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-      }
-
-      .section {
-        padding: 70px 0;
-      }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.7fr);
-        gap: 24px;
-        align-items: end;
-        margin-bottom: 30px;
-      }
-
-      .section-head h2,
-      .cta-panel h2 {
-        font-size: clamp(2rem, 4vw, 3.4rem);
-        line-height: 1.02;
-      }
-
-      .card-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .card,
-      .mini-card,
-      .feature-card {
-        padding: 22px;
-      }
-
-      .mini-ui {
-        margin-top: 18px;
+      .vote-grid {
+        margin-top: 20px;
         display: grid;
         gap: 12px;
       }
 
-      .mini-ui-row {
-        display: grid;
+      .vote-row {
         grid-template-columns: 1fr auto;
-        gap: 14px;
         padding: 12px 14px;
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      .mini-ui-row strong {
-        display: block;
-        font-size: 0.92rem;
-      }
-
-      .mini-ui-row span {
+      .vote-row span {
         color: var(--muted);
         font-size: 0.82rem;
       }
 
-      .showcase-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.92fr);
-        gap: 18px;
-      }
-
-      .foundation-board {
-        padding: 24px;
-      }
-
-      .foundation-top {
-        display: flex;
-        justify-content: space-between;
+      .signal-strip {
         gap: 16px;
-        align-items: center;
-      }
-
-      .foundation-title h3 {
-        margin: 8px 0 0;
-        font-size: 1.5rem;
-        letter-spacing: -0.04em;
-      }
-
-      .board-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
         margin-top: 22px;
       }
 
-      .board-column {
-        padding: 16px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.025);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+      .signal-card {
+        flex: 1 1 0;
+        gap: 14px;
+        padding: 16px 18px;
       }
 
-      .board-column h4 {
-        margin: 0 0 14px;
-        font-size: 0.98rem;
-        letter-spacing: -0.03em;
-      }
-
-      .check-row {
-        align-items: start;
-        padding: 12px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .check-row:first-of-type {
-        border-top: 0;
-        padding-top: 0;
-      }
-
-      .check-mark {
-        width: 24px;
-        height: 24px;
-        border-radius: 999px;
+      .signal-number {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
         display: grid;
         place-items: center;
-        background: rgba(74, 222, 128, 0.12);
-        color: #aef0c2;
-        font-size: 0.84rem;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--muted-strong);
+        font-size: 0.86rem;
+        font-weight: 700;
         flex: 0 0 auto;
       }
 
-      .roadmap {
-        display: grid;
-        gap: 12px;
-        margin-top: 20px;
-      }
-
-      .roadmap-row {
-        padding: 14px 16px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .roadmap-row .small-pill {
-        min-width: 88px;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .feature-card {
-        min-height: 210px;
-      }
-
-      .feature-card .panel-label {
-        margin-bottom: 16px;
-      }
-
-      .feature-metric {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 18px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        color: var(--muted-strong);
-        font-size: 0.84rem;
-      }
-
-      .cta {
-        padding: 32px 0 88px;
-      }
-
-      .cta-panel {
-        position: relative;
-        overflow: hidden;
-        padding: 34px;
-      }
-
-      .cta-panel::before {
-        content: "";
-        position: absolute;
-        inset: auto 0 0 auto;
-        width: 320px;
-        height: 320px;
-        background: radial-gradient(circle, rgba(155, 140, 255, 0.24), transparent 60%);
-        pointer-events: none;
-      }
-
-      .cta-grid {
-        position: relative;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 24px;
-        align-items: center;
+      .signal-card p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.45;
       }
 
       .footer-note {
+        padding: 26px 0 44px;
         color: var(--muted);
-        font-size: 0.88rem;
-        margin-top: 14px;
+        text-align: center;
+        font-size: 0.84rem;
       }
 
-      @media (max-width: 1120px) {
-        .hero-grid,
-        .section-head,
-        .showcase-grid,
-        .cta-grid {
+      @media (max-width: 940px) {
+        .stage-grid,
+        .signal-strip {
+          display: grid;
           grid-template-columns: 1fr;
         }
 
-        .hero-product,
-        .hero-panel-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .sidebar {
-          border-right: 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .card-grid,
-        .feature-grid,
-        .workflow-grid,
-        .board-grid,
-        .hero-metrics {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        .stage-tabs {
+          display: none;
         }
       }
 
-      @media (max-width: 780px) {
+      @media (max-width: 720px) {
         .container {
-          width: min(100% - 24px, 1180px);
+          width: min(100% - 20px, 1160px);
         }
 
-        .topbar {
-          min-height: 70px;
+        .header-row {
+          min-height: 64px;
         }
 
-        .topnav {
+        .nav-row {
           display: none;
         }
 
         .hero {
-          padding-top: 52px;
+          padding-top: 12px;
+        }
+
+        .hero-logo {
+          margin-top: 64px;
         }
 
         h1 {
-          font-size: clamp(2.9rem, 18vw, 4.6rem);
+          font-size: clamp(2.6rem, 16vw, 4.2rem);
         }
 
-        .hero-copy p {
-          font-size: 1rem;
+        .hero-subtitle {
+          font-size: 0.96rem;
         }
 
-        .card-grid,
-        .feature-grid,
-        .workflow-grid,
-        .board-grid,
-        .hero-metrics {
-          grid-template-columns: 1fr;
+        .product-stage {
+          margin-top: 40px;
         }
 
-        .app-window {
-          border-radius: 24px;
+        .stage-body,
+        .panel {
+          padding: 16px;
         }
 
-        .window-bar,
-        .canvas,
-        .panel,
-        .foundation-board,
-        .cta-panel {
-          padding-left: 18px;
-          padding-right: 18px;
+        .campaign-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .breakdown-row {
+          grid-template-columns: 74px 1fr auto;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page-shell">
-      <div class="topbar-wrap">
-        <header class="container topbar">
-          <a class="brand" href="#top">
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand-row">
+          <a class="brand-row" href="#top">
             <span class="brand-mark">A</span>
-            <span>Angor</span>
+            <span class="brand-name">Angor</span>
           </a>
-          <nav class="topnav" aria-label="Primary">
-            <a href="#product">Product</a>
-            <a href="#control">Control</a>
-            <a href="#launch" class="topnav-cta">Open Demo</a>
-          </nav>
-        </header>
+          <span class="network-pill">Mainnet</span>
+        </div>
+        <nav class="nav-row" aria-label="Primary">
+          <a href="#product">Projects</a>
+          <a href="#product">App</a>
+          <a href="#product">Docs</a>
+        </nav>
       </div>
+    </header>
 
-      <main id="top">
-        <section class="hero">
-          <div class="container hero-grid">
-            <div class="hero-copy">
-              <span class="eyebrow">Bitcoin-native crowdfunding</span>
-              <h1>DECENTRALIZED KICKSTARTER</h1>
-              <p>
-                Launch with milestones. Fund with clarity. Release on proof.
-              </p>
-              <div class="hero-actions">
-                <a class="button button-primary" href="#product">View Product</a>
-                <a class="button button-secondary" href="#control">See Controls</a>
-              </div>
-              <div class="hero-metrics">
-                <div class="metric-card">
-                  <strong>Milestone escrow</strong>
-                  <span>Funds stay mapped to work.</span>
-                </div>
-                <div class="metric-card">
-                  <strong>Backer approvals</strong>
-                  <span>Releases happen on evidence.</span>
-                </div>
-                <div class="metric-card">
-                  <strong>Serious builder UX</strong>
-                  <span>Campaigns feel operational.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="app-window" aria-label="Angor product demo interface">
-              <div class="window-bar">
-                <div class="window-dots" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div class="window-title">Angor / Campaign Operations</div>
-                <div class="small-pill">Mainnet</div>
-              </div>
-              <div class="hero-product">
-                <aside class="sidebar">
-                  <div class="sidebar-label">Workspace</div>
-                  <div class="sidebar-group">
-                    <div class="sidebar-item active">
-                      <span>Overview</span>
-                      <span class="count-pill">Live</span>
-                    </div>
-                    <div class="sidebar-item">
-                      <span>Milestones</span>
-                      <span class="count-pill">4</span>
-                    </div>
-                    <div class="sidebar-item">
-                      <span>Backers</span>
-                      <span class="count-pill">312</span>
-                    </div>
-                    <div class="sidebar-item">
-                      <span>Treasury</span>
-                      <span class="count-pill">9.4 BTC</span>
-                    </div>
-                    <div class="sidebar-item">
-                      <span>Evidence</span>
-                      <span class="count-pill">12 files</span>
-                    </div>
-                  </div>
-                  <div class="sidebar-group">
-                    <div class="sidebar-label">Campaigns</div>
-                    <div class="campaign-list">
-                      <div class="campaign-row">
-                        <div>
-                          <strong>Strata Wallet</strong>
-                          <span>Hardware wallet for teams</span>
-                        </div>
-                        <span class="small-pill">91%</span>
-                      </div>
-                      <div class="campaign-row">
-                        <div>
-                          <strong>Nimbus Relay</strong>
-                          <span>Open payments infrastructure</span>
-                        </div>
-                        <span class="small-pill">New</span>
-                      </div>
-                      <div class="campaign-row">
-                        <div>
-                          <strong>Forge Studio</strong>
-                          <span>Creator tooling on Bitcoin</span>
-                        </div>
-                        <span class="small-pill">67%</span>
-                      </div>
-                    </div>
-                  </div>
-                </aside>
-
-                <div class="canvas">
-                  <section class="panel">
-                    <div class="hero-header">
-                      <div>
-                        <div class="meta-kicker">Live campaign</div>
-                        <h2>Strata Wallet</h2>
-                      </div>
-                      <div class="status-pill">Funding Open</div>
-                    </div>
-
-                    <div class="hero-panel-grid">
-                      <div class="panel">
-                        <div class="panel-label">Milestone releases</div>
-                        <div class="milestone-card">
-                          <div class="milestone-top">
-                            <div>
-                              <div class="milestone-title">Prototype shipped</div>
-                              <div class="subtle-row">
-                                <span>Evidence uploaded</span>
-                                <span>42 approvals</span>
-                              </div>
-                            </div>
-                            <span class="tag">Released 1.8 BTC</span>
-                          </div>
-                          <div class="bar"><span style="width: 100%"></span></div>
-                        </div>
-                        <div class="milestone-card">
-                          <div class="milestone-top">
-                            <div>
-                              <div class="milestone-title">Security audit</div>
-                              <div class="subtle-row">
-                                <span>Docs and scope posted</span>
-                                <span>Voting live</span>
-                              </div>
-                            </div>
-                            <span class="tag">Pending 2.2 BTC</span>
-                          </div>
-                          <div class="bar"><span style="width: 74%"></span></div>
-                        </div>
-                        <div class="milestone-card">
-                          <div class="milestone-top">
-                            <div>
-                              <div class="milestone-title">Manufacturing run</div>
-                              <div class="subtle-row">
-                                <span>Scheduled after audit</span>
-                                <span>Refund path preserved</span>
-                              </div>
-                            </div>
-                            <span class="tag">Locked 3.1 BTC</span>
-                          </div>
-                          <div class="bar"><span style="width: 32%"></span></div>
-                        </div>
-                      </div>
-
-                      <div class="stack">
-                        <div class="panel">
-                          <div class="panel-label">Treasury state</div>
-                          <div class="treasury-number">9.4 BTC</div>
-                          <div class="treasury-breakdown">
-                            <div class="fund-row">
-                              <span>Released</span>
-                              <div class="bar"><span style="width: 28%"></span></div>
-                              <strong>2.6 BTC</strong>
-                            </div>
-                            <div class="fund-row">
-                              <span>Voting</span>
-                              <div class="bar"><span style="width: 22%"></span></div>
-                              <strong>2.2 BTC</strong>
-                            </div>
-                            <div class="fund-row">
-                              <span>Protected</span>
-                              <div class="bar"><span style="width: 50%"></span></div>
-                              <strong>4.6 BTC</strong>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="panel">
-                          <div class="panel-label">Recent activity</div>
-                          <div class="feed">
-                            <div class="feed-row">
-                              <span class="dot"></span>
-                              <div>
-                                <strong>Milestone evidence uploaded</strong>
-                                <span>Factory prototype photos, BOM, and firmware demo were attached 18m ago.</span>
-                              </div>
-                            </div>
-                            <div class="feed-row">
-                              <span class="dot"></span>
-                              <div>
-                                <strong>Backer vote opened</strong>
-                                <span>Release request for the security audit is now live with a 72-hour window.</span>
-                              </div>
-                            </div>
-                            <div class="feed-row">
-                              <span class="dot"></span>
-                              <div>
-                                <strong>New pledge confirmed</strong>
-                                <span>+0.42 BTC from a repeat backer who funded the first batch.</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </div>
+    <main id="top" class="hero">
+      <div class="container hero-shell">
+        <section class="hero-copy">
+          <span class="hero-badge">Bitcoin-native crowdfunding</span>
+          <div class="hero-logo">A</div>
+          <h1>
+            DECENTRALIZED
+            <span class="hero-accent">KICKSTARTER</span>
+          </h1>
+          <p class="hero-subtitle">
+            Structured funding for serious builders and serious backers.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-secondary" href="#product">Fund Projects</a>
+            <a class="button button-primary" href="#product">Get Funded</a>
           </div>
-        </section>
 
-        <section class="section" id="product">
-          <div class="container">
-            <div class="section-head">
-              <div>
-                <div class="eyebrow">Product-led showcase</div>
-                <h2>Show the workflow. Skip the speech.</h2>
+          <section class="product-stage" id="product" aria-label="Angor product preview">
+            <div class="stage-topbar">
+              <div class="stage-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
-              <p>Three surfaces. Launch, prove, release.</p>
+              <div class="stage-title">Angor / Campaign</div>
+              <div class="stage-tabs" aria-hidden="true">
+                <span class="stage-tab active">Overview</span>
+                <span class="stage-tab">Milestones</span>
+                <span class="stage-tab">Treasury</span>
+                <span class="stage-tab">Backers</span>
+              </div>
             </div>
 
-            <div class="showcase-grid">
-              <div class="card foundation-board">
-                <div class="foundation-top">
-                  <div class="foundation-title">
-                    <div class="panel-label">Builder workspace</div>
-                    <h3>Campaign foundation</h3>
-                  </div>
-                  <span class="status-pill">Release governance active</span>
-                </div>
-                <div class="board-grid">
-                  <div class="board-column">
-                    <h4>Launch</h4>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Campaign thesis</strong>
-                        <span>Scope and target outcome.</span>
-                      </div>
-                    </div>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Milestone map</strong>
-                        <span>Prototype, audit, delivery.</span>
-                      </div>
-                    </div>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Funding rules</strong>
-                        <span>Release % per checkpoint.</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="board-column">
-                    <h4>Build</h4>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Evidence room</strong>
-                        <span>Docs, demos, proofs.</span>
-                      </div>
-                    </div>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Progress updates</strong>
-                        <span>Operational, not promotional.</span>
-                      </div>
-                    </div>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Release request</strong>
-                        <span>Request funds with proof attached.</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="board-column">
-                    <h4>Govern</h4>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Backer vote</strong>
-                        <span>Approve or reject per milestone.</span>
-                      </div>
-                    </div>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Protected treasury</strong>
-                        <span>Unreleased funds stay locked.</span>
-                      </div>
-                    </div>
-                    <div class="check-row">
-                      <span class="check-mark">+</span>
-                      <div>
-                        <strong>Final release</strong>
-                        <span>Capital moves after proof.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="roadmap">
-                  <div class="roadmap-row">
+            <div class="stage-body">
+              <div class="stage-grid">
+                <div class="panel">
+                  <div class="panel-kicker">Live campaign</div>
+                  <div class="campaign-head">
                     <div>
-                      <strong>Prototype milestone</strong>
-                      <span>Rev A delivered.</span>
+                      <h2>Strata Wallet</h2>
+                      <div class="meta-row">
+                        <span class="mini-pill">312 backers</span>
+                        <span class="mini-pill">9.4 BTC raised</span>
+                        <span class="mini-pill">4 milestones</span>
+                      </div>
                     </div>
-                    <span class="small-pill">Released</span>
+                    <span class="status-chip">Funding Open</span>
                   </div>
-                  <div class="roadmap-row">
-                    <div>
-                      <strong>Security audit milestone</strong>
-                      <span>Evidence posted.</span>
+
+                  <div class="milestones">
+                    <div class="milestone">
+                      <div class="milestone-top">
+                        <div class="milestone-title">Prototype shipped</div>
+                        <div class="mini-pill">Released 1.8 BTC</div>
+                      </div>
+                      <div class="milestone-meta">Evidence uploaded. Backers approved.</div>
+                      <div class="bar"><span style="width: 100%"></span></div>
                     </div>
-                    <span class="small-pill">In vote</span>
+
+                    <div class="milestone">
+                      <div class="milestone-top">
+                        <div class="milestone-title">Security audit</div>
+                        <div class="mini-pill">Pending 2.2 BTC</div>
+                      </div>
+                      <div class="milestone-meta">Release request live.</div>
+                      <div class="bar"><span style="width: 74%"></span></div>
+                    </div>
+
+                    <div class="milestone">
+                      <div class="milestone-top">
+                        <div class="milestone-title">Manufacturing run</div>
+                        <div class="mini-pill">Locked 3.1 BTC</div>
+                      </div>
+                      <div class="milestone-meta">Treasury protected until completion.</div>
+                      <div class="bar"><span style="width: 32%"></span></div>
+                    </div>
                   </div>
-                  <div class="roadmap-row">
-                    <div>
-                      <strong>Manufacturing milestone</strong>
-                      <span>Treasury locked.</span>
+                </div>
+
+                <div class="side-stack">
+                  <div class="panel compact-card">
+                    <div class="label">Treasury</div>
+                    <div class="big-number">9.4 BTC</div>
+                    <div class="breakdown">
+                      <div class="breakdown-row">
+                        <span>Released</span>
+                        <div class="bar"><span style="width: 28%"></span></div>
+                        <strong>2.6</strong>
+                      </div>
+                      <div class="breakdown-row">
+                        <span>Voting</span>
+                        <div class="bar"><span style="width: 22%"></span></div>
+                        <strong>2.2</strong>
+                      </div>
+                      <div class="breakdown-row">
+                        <span>Locked</span>
+                        <div class="bar"><span style="width: 50%"></span></div>
+                        <strong>4.6</strong>
+                      </div>
                     </div>
-                    <span class="small-pill">Protected</span>
+                  </div>
+
+                  <div class="panel vote-card">
+                    <div class="label">Backer control</div>
+                    <h3>Audit release request</h3>
+                    <div class="vote-grid">
+                      <div class="vote-row">
+                        <div>
+                          <strong>Approval window</strong>
+                          <span>72 hours remaining</span>
+                        </div>
+                        <div class="mini-pill">Live</div>
+                      </div>
+                      <div class="vote-row">
+                        <div>
+                          <strong>Participation</strong>
+                          <span>42 votes submitted</span>
+                        </div>
+                        <div class="mini-pill">Visible</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="stack">
-                <article class="mini-card">
-                  <div class="panel-label">Backer view</div>
-                  <h3>Clear controls.</h3>
-                  <div class="feed">
-                    <div class="feed-row">
-                      <span class="dot"></span>
-                      <div>
-                        <strong>Vote on release</strong>
-                        <span>Proof attached.</span>
-                      </div>
-                    </div>
-                    <div class="feed-row">
-                      <span class="dot"></span>
-                      <div>
-                        <strong>Track untouched funds</strong>
-                        <span>Future funds protected.</span>
-                      </div>
-                    </div>
+              <div class="signal-strip" aria-label="Key product mechanics">
+                <div class="signal-card">
+                  <span class="signal-number">01</span>
+                  <div>
+                    <strong>Launch with milestones</strong>
+                    <p>Funding is mapped to work from day one.</p>
                   </div>
-                </article>
-
-                <article class="mini-card" id="control">
-                  <div class="panel-label">Operator quality</div>
-                  <h3>Fast. Structured. Credible.</h3>
-                  <div class="mini-ui">
-                    <div class="mini-ui-row">
-                      <div>
-                        <strong>Project setup</strong>
-                        <span>Milestones, releases, refunds</span>
-                      </div>
-                      <span class="tag">Structured</span>
-                    </div>
-                    <div class="mini-ui-row">
-                      <div>
-                        <strong>Backer experience</strong>
-                        <span>Progress, approvals, treasury</span>
-                      </div>
-                      <span class="tag">Clear</span>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="launch">
-          <div class="container">
-            <div class="section-head">
-              <div>
-                <div class="eyebrow">Core loop</div>
-                <h2>Fund. Build. Approve. Release.</h2>
-              </div>
-              <p>Visible mechanics, not marketing copy.</p>
-            </div>
-
-            <div class="feature-grid">
-              <article class="feature-card">
-                <div class="panel-label">01</div>
-                <h3>Launch</h3>
-                <p>Define milestones.</p>
-                <div class="feature-metric">Structured start</div>
-              </article>
-              <article class="feature-card">
-                <div class="panel-label">02</div>
-                <h3>Fund</h3>
-                <p>Back capital with clarity.</p>
-                <div class="feature-metric">BTC-native</div>
-              </article>
-              <article class="feature-card">
-                <div class="panel-label">03</div>
-                <h3>Approve</h3>
-                <p>Vote on proof.</p>
-                <div class="feature-metric">Evidence first</div>
-              </article>
-              <article class="feature-card">
-                <div class="panel-label">04</div>
-                <h3>Release</h3>
-                <p>Unlock on completion.</p>
-                <div class="feature-metric">Protected treasury</div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="cta">
-          <div class="container">
-            <div class="cta-panel">
-              <div class="cta-grid">
-                <div>
-                  <div class="eyebrow">Demo landing page</div>
-                  <h2>Serious product. Serious backers.</h2>
-                  <p>Less explanation. More interface.</p>
-                  <div class="footer-note">Built as a cleaner, more visual founder demo.</div>
                 </div>
-                <div class="hero-actions">
-                  <a class="button button-primary" href="#top">Replay Hero</a>
-                  <a class="button button-secondary" href="#product">Review Surfaces</a>
+                <div class="signal-card">
+                  <span class="signal-number">02</span>
+                  <div>
+                    <strong>Back with clarity</strong>
+                    <p>Backers see what is released and what is still locked.</p>
+                  </div>
+                </div>
+                <div class="signal-card">
+                  <span class="signal-number">03</span>
+                  <div>
+                    <strong>Release on proof</strong>
+                    <p>Treasury moves when milestones are actually complete.</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </section>
-      </main>
+      </div>
+    </main>
+
+    <div class="container footer-note">
+      Angor as a simpler, clearer product-led landing page demo.
     </div>
   </body>
 </html>
