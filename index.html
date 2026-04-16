@@ -9,11 +9,11 @@
     <meta http-equiv="Expires" content="0">
     <meta
       name="description"
-      content="Angor is the Bitcoin protocol for funding projects with milestones, visible treasury control, and backer approvals."
+      content="Angor is the Bitcoin protocol for funding projects with milestone-based campaigns, visible treasury control, and backer approvals."
     >
     <script>
       (function () {
-        var buildId = "angor-copy-v2";
+        var buildId = "product-led-v3";
         var url = new URL(window.location.href);
         if (url.searchParams.get("v") === buildId) {
           return;
@@ -25,23 +25,24 @@
     <style>
       :root {
         color-scheme: dark;
-        --bg: #171717;
-        --bg-soft: #1e1e1e;
-        --panel: #1b1c1d;
-        --panel-soft: rgba(255, 255, 255, 0.03);
+        --bg: #08090d;
+        --bg-soft: #0e1016;
+        --panel: rgba(14, 16, 22, 0.92);
+        --panel-soft: rgba(255, 255, 255, 0.035);
         --line: rgba(255, 255, 255, 0.08);
         --line-strong: rgba(255, 255, 255, 0.14);
-        --text: #f4f5f7;
-        --muted: #a6aaad;
-        --muted-strong: #c7cbcf;
-        --accent: #70be80;
-        --accent-deep: #5ea56d;
-        --accent-soft: rgba(112, 190, 128, 0.18);
-        --warning: #ecb84a;
-        --radius-xl: 32px;
+        --text: #f4f7fb;
+        --muted: #a4adbb;
+        --muted-strong: #d0d7e3;
+        --accent: #79c98c;
+        --accent-strong: #62b577;
+        --accent-soft: rgba(121, 201, 140, 0.18);
+        --accent-cool: #8fd8ff;
+        --radius-xl: 30px;
         --radius-lg: 22px;
         --radius-md: 16px;
-        --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        --shadow-lg: 0 32px 90px rgba(0, 0, 0, 0.42);
+        --shadow-md: 0 18px 46px rgba(0, 0, 0, 0.3);
       }
 
       * {
@@ -57,8 +58,9 @@
         min-height: 100vh;
         font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background:
-          radial-gradient(circle at 50% 30%, rgba(112, 190, 128, 0.09), transparent 18%),
-          linear-gradient(180deg, #181818 0%, #171717 100%);
+          radial-gradient(circle at 20% 0%, rgba(143, 216, 255, 0.09), transparent 22%),
+          radial-gradient(circle at 80% 10%, rgba(121, 201, 140, 0.12), transparent 24%),
+          linear-gradient(180deg, #090a0e 0%, #08090d 100%);
         color: var(--text);
       }
 
@@ -67,56 +69,92 @@
         text-decoration: none;
       }
 
+      .page {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page::before,
+      .page::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        border-radius: 999px;
+        filter: blur(90px);
+        opacity: 0.45;
+      }
+
+      .page::before {
+        width: 360px;
+        height: 360px;
+        top: 140px;
+        right: -80px;
+        background: rgba(121, 201, 140, 0.16);
+      }
+
+      .page::after {
+        width: 280px;
+        height: 280px;
+        top: 520px;
+        left: -60px;
+        background: rgba(143, 216, 255, 0.14);
+      }
+
       .container {
-        width: min(1160px, calc(100% - 32px));
+        width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
       }
 
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 30;
-        backdrop-filter: blur(18px);
-        background: rgba(23, 23, 23, 0.78);
+        z-index: 40;
+        backdrop-filter: blur(16px);
+        background: rgba(8, 9, 13, 0.76);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .header-row,
+      .brand-wrap,
+      .brand-link,
+      .network,
+      .nav,
+      .hero-actions,
+      .button,
+      .hero-chips,
+      .stage-tabs,
+      .metric-row,
+      .row,
+      .feature-list,
+      .feature-item {
+        display: flex;
+        align-items: center;
       }
 
       .header-row {
-        display: flex;
-        align-items: center;
         justify-content: space-between;
         min-height: 72px;
         gap: 20px;
       }
 
-      .brand-row,
-      .nav-row,
-      .network-pill,
-      .hero-actions,
-      .button,
-      .stage-tabs,
-      .meta-row,
-      .mini-row,
-      .signal-strip,
-      .signal-card {
-        display: flex;
-        align-items: center;
+      .brand-wrap {
+        gap: 14px;
       }
 
-      .brand-row {
-        gap: 12px;
+      .brand-link {
+        gap: 10px;
       }
 
       .brand-mark {
-        width: 28px;
-        height: 28px;
-        border-radius: 8px;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
         display: grid;
         place-items: center;
-        background: linear-gradient(180deg, #79cb8b, #67b579);
-        color: #101010;
-        font-size: 0.95rem;
-        font-weight: 800;
-        box-shadow: 0 0 24px rgba(112, 190, 128, 0.18);
+        background: linear-gradient(180deg, #7ed090, #6ab97c);
+        color: #101318;
+        font-weight: 900;
+        box-shadow: 0 0 30px rgba(121, 201, 140, 0.2);
       }
 
       .brand-name {
@@ -124,81 +162,72 @@
         font-weight: 600;
       }
 
-      .network-pill {
+      .network {
         gap: 8px;
-        color: var(--muted-strong);
-        font-size: 0.84rem;
+        color: #e7c06b;
+        font-size: 0.83rem;
       }
 
-      .network-pill::before {
+      .network::before {
         content: "";
         width: 7px;
         height: 7px;
         border-radius: 999px;
-        background: var(--warning);
-        box-shadow: 0 0 16px rgba(236, 184, 74, 0.55);
+        background: currentColor;
+        box-shadow: 0 0 14px rgba(231, 192, 107, 0.55);
       }
 
-      .nav-row {
+      .nav {
         gap: 22px;
         color: var(--muted);
         font-size: 0.88rem;
       }
 
-      .nav-row a:hover {
+      .nav a:hover {
         color: var(--text);
       }
 
       .hero {
-        padding: 36px 0 52px;
+        padding: 54px 0 42px;
       }
 
-      .hero-shell {
-        min-height: calc(100vh - 72px);
+      .hero-grid {
         display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 42px;
         align-items: center;
       }
 
-      .hero-copy {
-        text-align: center;
-      }
-
-      .hero-badge {
+      .eyebrow {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        padding: 10px 14px;
+        padding: 9px 12px;
         border-radius: 999px;
-        border: 1px solid var(--line);
         background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
         color: var(--muted-strong);
-        font-size: 0.78rem;
+        font-size: 0.77rem;
+        font-weight: 600;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
-      .hero-logo {
-        width: 76px;
-        height: 76px;
-        margin: 88px auto 28px;
-        border-radius: 22px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(180deg, #78cb8b, #66b779);
-        color: #111;
-        font-size: 2rem;
-        font-weight: 900;
-        box-shadow:
-          0 0 0 1px rgba(255, 255, 255, 0.06),
-          0 0 60px rgba(112, 190, 128, 0.22);
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-cool));
+        box-shadow: 0 0 18px rgba(143, 216, 255, 0.5);
       }
 
       h1 {
-        max-width: 900px;
-        margin: 0 auto;
-        font-size: clamp(3rem, 8vw, 5.2rem);
-        line-height: 0.98;
-        letter-spacing: -0.06em;
+        max-width: 620px;
+        margin: 22px 0 18px;
+        font-size: clamp(3.4rem, 8vw, 5.9rem);
+        line-height: 0.94;
+        letter-spacing: -0.065em;
       }
 
       .hero-accent {
@@ -206,18 +235,17 @@
         font-style: italic;
       }
 
-      .hero-subtitle {
-        max-width: 630px;
-        margin: 22px auto 0;
+      .hero-copy p {
+        max-width: 540px;
+        margin: 0;
         color: var(--muted);
-        font-size: 1.02rem;
-        line-height: 1.6;
+        font-size: 1.03rem;
+        line-height: 1.65;
       }
 
       .hero-actions {
-        justify-content: center;
         gap: 14px;
-        margin-top: 34px;
+        margin-top: 28px;
       }
 
       .button {
@@ -229,52 +257,88 @@
         border: 1px solid var(--line-strong);
         font-size: 0.95rem;
         font-weight: 600;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .button:hover,
+      .surface:hover,
+      .feature-item:hover {
+        transform: translateY(-2px);
       }
 
       .button-primary {
-        background: linear-gradient(180deg, #74c786, #649f72);
-        color: #121212;
+        color: #101318;
+        background: linear-gradient(180deg, #84d596, #6fba80);
       }
 
       .button-secondary {
-        background: rgba(255, 255, 255, 0.02);
-        color: var(--text);
+        background: rgba(255, 255, 255, 0.03);
       }
 
-      .product-stage {
-        margin-top: 56px;
+      .hero-chips {
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .hero-chip,
+      .mini-pill,
+      .status-chip,
+      .tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 30px;
+        padding: 0 11px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+      }
+
+      .hero-chip,
+      .mini-pill,
+      .tab {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        color: var(--muted-strong);
+      }
+
+      .surface {
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
           var(--panel);
         border: 1px solid var(--line);
         border-radius: var(--radius-xl);
-        overflow: hidden;
-        box-shadow: var(--shadow);
+        box-shadow: var(--shadow-lg);
       }
 
-      .stage-topbar {
+      .app-shell {
+        overflow: hidden;
+      }
+
+      .shell-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 18px;
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--line);
+        padding: 16px 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         background: rgba(255, 255, 255, 0.02);
       }
 
-      .stage-dots {
+      .shell-dots {
         display: flex;
         gap: 8px;
       }
 
-      .stage-dots span {
+      .shell-dots span {
         width: 10px;
         height: 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.16);
       }
 
-      .stage-title {
+      .shell-title {
         color: var(--muted);
         font-size: 0.84rem;
       }
@@ -283,94 +347,80 @@
         gap: 8px;
       }
 
-      .stage-tab {
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: transparent;
-        color: var(--muted);
-        font-size: 0.82rem;
-      }
-
-      .stage-tab.active {
-        background: rgba(255, 255, 255, 0.06);
+      .tab.active {
+        background: rgba(255, 255, 255, 0.08);
         color: var(--text);
       }
 
-      .stage-body {
+      .app-body {
         padding: 22px;
       }
 
-      .stage-grid {
+      .app-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+        grid-template-columns: minmax(0, 1.06fr) minmax(280px, 0.94fr);
         gap: 18px;
       }
 
-      .panel,
-      .signal-card {
+      .panel {
+        padding: 20px;
         background: var(--panel-soft);
         border: 1px solid var(--line);
         border-radius: var(--radius-lg);
       }
 
-      .panel {
-        padding: 20px;
-      }
-
       .panel-kicker,
-      .label {
+      .section-kicker {
         color: var(--muted);
-        font-size: 0.75rem;
+        font-size: 0.74rem;
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
       }
 
-      .campaign-head {
-        margin-top: 14px;
+      .panel-head {
         display: flex;
         align-items: start;
         justify-content: space-between;
         gap: 16px;
+        margin-top: 12px;
       }
 
-      .campaign-head h2,
-      .compact-card h3,
-      .signal-card strong {
+      .panel-head h2,
+      .panel-head h3,
+      .section-head h2 {
         margin: 0;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.045em;
       }
 
-      .campaign-head h2 {
-        font-size: 2rem;
+      .panel-head h2 {
+        font-size: 1.9rem;
+      }
+
+      .panel-head p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.94rem;
       }
 
       .status-chip {
-        padding: 9px 12px;
-        border-radius: 999px;
         background: var(--accent-soft);
-        color: #c9f1d3;
-        font-size: 0.8rem;
-        font-weight: 600;
-        border: 1px solid rgba(112, 190, 128, 0.16);
+        color: #cef1d6;
+        border: 1px solid rgba(121, 201, 140, 0.15);
       }
 
-      .meta-row {
+      .metric-row {
         gap: 10px;
         flex-wrap: wrap;
-        margin-top: 10px;
+        margin-top: 14px;
       }
 
-      .mini-pill {
-        padding: 8px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--muted-strong);
-        font-size: 0.8rem;
+      .milestone-list,
+      .feature-list {
+        margin-top: 18px;
       }
 
-      .milestones {
-        margin-top: 22px;
+      .milestone-list {
         display: grid;
         gap: 12px;
       }
@@ -382,9 +432,7 @@
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      .milestone-top {
-        display: flex;
-        align-items: center;
+      .row {
         justify-content: space-between;
         gap: 14px;
       }
@@ -394,10 +442,12 @@
         font-weight: 600;
       }
 
-      .milestone-meta {
-        margin-top: 6px;
+      .milestone p,
+      .feature-item p {
+        margin: 8px 0 0;
         color: var(--muted);
-        font-size: 0.84rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
       }
 
       .bar {
@@ -412,7 +462,7 @@
         display: block;
         height: 100%;
         border-radius: inherit;
-        background: linear-gradient(90deg, #7bcb8c, #5f9e6d);
+        background: linear-gradient(90deg, var(--accent), var(--accent-cool));
       }
 
       .side-stack {
@@ -422,63 +472,46 @@
 
       .big-number {
         margin: 10px 0 0;
-        font-size: 2.8rem;
+        font-size: 2.6rem;
         font-weight: 700;
         letter-spacing: -0.06em;
       }
 
+      .big-caption {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
       .breakdown {
-        margin-top: 20px;
+        margin-top: 18px;
         display: grid;
         gap: 12px;
       }
 
-      .breakdown-row,
-      .vote-row {
+      .breakdown-row {
         display: grid;
-        grid-template-columns: 86px 1fr auto;
-        align-items: center;
+        grid-template-columns: 82px 1fr auto;
         gap: 10px;
+        align-items: center;
         font-size: 0.86rem;
       }
 
-      .vote-card h3,
-      .compact-card h3 {
-        margin-top: 12px;
-        font-size: 1.25rem;
-      }
-
-      .vote-grid {
-        margin-top: 20px;
+      .feature-list {
         display: grid;
         gap: 12px;
       }
 
-      .vote-row {
-        grid-template-columns: 1fr auto;
-        padding: 12px 14px;
+      .feature-item {
+        gap: 14px;
+        padding: 14px;
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.06);
+        align-items: start;
       }
 
-      .vote-row span {
-        color: var(--muted);
-        font-size: 0.82rem;
-      }
-
-      .signal-strip {
-        gap: 16px;
-        margin-top: 22px;
-      }
-
-      .signal-card {
-        flex: 1 1 0;
-        gap: 14px;
-        padding: 16px 18px;
-      }
-
-      .signal-number {
+      .feature-number {
         width: 34px;
         height: 34px;
         border-radius: 12px;
@@ -486,260 +519,380 @@
         place-items: center;
         background: rgba(255, 255, 255, 0.06);
         color: var(--muted-strong);
-        font-size: 0.86rem;
+        font-size: 0.84rem;
         font-weight: 700;
         flex: 0 0 auto;
       }
 
-      .signal-card p {
-        margin: 6px 0 0;
-        color: var(--muted);
-        font-size: 0.86rem;
-        line-height: 1.45;
+      .feature-item strong {
+        font-size: 0.95rem;
       }
 
-      .footer-note {
-        padding: 26px 0 44px;
+      .section {
+        padding: 26px 0 80px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 24px;
+        align-items: end;
+      }
+
+      .section-head h2 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 1.02;
+      }
+
+      .section-head p {
+        max-width: 520px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .showcase-card {
+        padding: 18px;
+      }
+
+      .showcase-card h3 {
+        margin: 12px 0 0;
+        font-size: 1.15rem;
+        letter-spacing: -0.03em;
+      }
+
+      .showcase-card p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .mini-window {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .mini-window .row {
+        justify-content: space-between;
+      }
+
+      .mini-lines {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .mini-line {
+        height: 11px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .mini-line.short {
+        width: 56%;
+      }
+
+      .mini-line.mid {
+        width: 74%;
+      }
+
+      .footer {
+        padding-bottom: 40px;
         color: var(--muted);
         text-align: center;
         font-size: 0.84rem;
       }
 
-      @media (max-width: 940px) {
-        .stage-grid,
-        .signal-strip {
-          display: grid;
+      @media (max-width: 1080px) {
+        .hero-grid,
+        .app-grid,
+        .section-head,
+        .showcase-grid {
           grid-template-columns: 1fr;
-        }
-
-        .stage-tabs {
-          display: none;
         }
       }
 
-      @media (max-width: 720px) {
+      @media (max-width: 760px) {
         .container {
-          width: min(100% - 20px, 1160px);
+          width: min(100% - 20px, 1180px);
         }
 
-        .header-row {
-          min-height: 64px;
-        }
-
-        .nav-row {
+        .nav,
+        .stage-tabs {
           display: none;
         }
 
         .hero {
-          padding-top: 12px;
-        }
-
-        .hero-logo {
-          margin-top: 64px;
+          padding-top: 32px;
         }
 
         h1 {
-          font-size: clamp(2.6rem, 16vw, 4.2rem);
+          font-size: clamp(2.8rem, 15vw, 4.6rem);
         }
 
-        .hero-subtitle {
-          font-size: 0.96rem;
+        .hero-copy p,
+        .section-head p {
+          font-size: 0.95rem;
         }
 
-        .product-stage {
-          margin-top: 40px;
-        }
-
-        .stage-body,
-        .panel {
+        .app-body,
+        .panel,
+        .showcase-card {
           padding: 16px;
         }
 
-        .campaign-head {
+        .panel-head {
           flex-direction: column;
           align-items: flex-start;
-        }
-
-        .breakdown-row {
-          grid-template-columns: 74px 1fr auto;
         }
       }
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="container header-row">
-        <div class="brand-row">
-          <a class="brand-row" href="#top">
-            <span class="brand-mark">A</span>
-            <span class="brand-name">Angor</span>
-          </a>
-          <span class="network-pill">Mainnet</span>
-        </div>
-        <nav class="nav-row" aria-label="Primary">
-          <a href="#product">Projects</a>
-          <a href="#product">App</a>
-          <a href="#product">Docs</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="top" class="hero">
-      <div class="container hero-shell">
-        <section class="hero-copy">
-          <span class="hero-badge">Bitcoin-native crowdfunding</span>
-          <div class="hero-logo">A</div>
-          <h1>
-            DECENTRALIZED
-            <span class="hero-accent">KICKSTARTER</span>
-          </h1>
-          <p class="hero-subtitle">
-            The only Bitcoin protocol for funding projects.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-secondary" href="#product">Fund Projects</a>
-            <a class="button button-primary" href="#product">Get Funded</a>
+    <div class="page">
+      <header class="site-header">
+        <div class="container header-row">
+          <div class="brand-wrap">
+            <a class="brand-link" href="#top">
+              <span class="brand-mark">A</span>
+              <span class="brand-name">Angor</span>
+            </a>
+            <span class="network">Mainnet</span>
           </div>
+          <nav class="nav" aria-label="Primary">
+            <a href="#product">Product</a>
+            <a href="#surfaces">Workflow</a>
+            <a href="#surfaces">Docs</a>
+          </nav>
+        </div>
+      </header>
 
-          <section class="product-stage" id="product" aria-label="Angor product preview">
-            <div class="stage-topbar">
-              <div class="stage-dots" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
+      <main id="top">
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow">Bitcoin-native crowdfunding protocol</span>
+              <h1>
+                DECENTRALIZED
+                <span class="hero-accent">KICKSTARTER</span>
+              </h1>
+              <p>
+                Launch milestone-based campaigns, fund projects on Bitcoin, and release treasury only when progress is visible and approved.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-secondary" href="#product">Fund Projects</a>
+                <a class="button button-primary" href="#product">Get Funded</a>
               </div>
-              <div class="stage-title">Angor / Campaign</div>
-              <div class="stage-tabs" aria-hidden="true">
-                <span class="stage-tab active">Overview</span>
-                <span class="stage-tab">Milestones</span>
-                <span class="stage-tab">Treasury</span>
-                <span class="stage-tab">Backers</span>
-              </div>
-            </div>
-
-            <div class="stage-body">
-              <div class="stage-grid">
-                <div class="panel">
-                  <div class="panel-kicker">How Angor works</div>
-                  <div class="campaign-head">
-                    <div>
-                      <h2>Funding projects</h2>
-                      <div class="meta-row">
-                        <span class="mini-pill">Bitcoin-native</span>
-                        <span class="mini-pill">Milestone based</span>
-                        <span class="mini-pill">Backer approvals</span>
-                      </div>
-                    </div>
-                    <span class="status-chip">Mainnet Live</span>
-                  </div>
-
-                  <div class="milestones">
-                    <div class="milestone">
-                      <div class="milestone-top">
-                        <div class="milestone-title">Project is funded</div>
-                        <div class="mini-pill">Fund Projects</div>
-                      </div>
-                      <div class="milestone-meta">Backers fund projects directly through Angor.</div>
-                      <div class="bar"><span style="width: 100%"></span></div>
-                    </div>
-
-                    <div class="milestone">
-                      <div class="milestone-top">
-                        <div class="milestone-title">Milestone is proposed</div>
-                        <div class="mini-pill">Project updates</div>
-                      </div>
-                      <div class="milestone-meta">Teams attach progress and proof to each milestone.</div>
-                      <div class="bar"><span style="width: 74%"></span></div>
-                    </div>
-
-                    <div class="milestone">
-                      <div class="milestone-top">
-                        <div class="milestone-title">Treasury is released</div>
-                        <div class="mini-pill">Backer approval</div>
-                      </div>
-                      <div class="milestone-meta">Funds move only when milestone conditions are approved.</div>
-                      <div class="bar"><span style="width: 32%"></span></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="side-stack">
-                  <div class="panel compact-card">
-                    <div class="label">Campaign treasury</div>
-                    <div class="big-number">Milestone based</div>
-                    <div class="breakdown">
-                      <div class="breakdown-row">
-                        <span>Released</span>
-                        <div class="bar"><span style="width: 28%"></span></div>
-                        <strong>Proof</strong>
-                      </div>
-                      <div class="breakdown-row">
-                        <span>Review</span>
-                        <div class="bar"><span style="width: 22%"></span></div>
-                        <strong>Backers</strong>
-                      </div>
-                      <div class="breakdown-row">
-                        <span>Locked</span>
-                        <div class="bar"><span style="width: 50%"></span></div>
-                        <strong>Protected</strong>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="panel vote-card">
-                    <div class="label">Backer control</div>
-                    <h3>Milestone approvals</h3>
-                    <div class="vote-grid">
-                      <div class="vote-row">
-                        <div>
-                          <strong>Project updates</strong>
-                          <span>Release requests stay tied to visible progress.</span>
-                        </div>
-                        <div class="mini-pill">Live</div>
-                      </div>
-                      <div class="vote-row">
-                        <div>
-                          <strong>Backer approvals</strong>
-                          <span>Backers review milestone releases before funds move.</span>
-                        </div>
-                        <div class="mini-pill">Visible</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="signal-strip" aria-label="Key product mechanics">
-                <div class="signal-card">
-                  <span class="signal-number">01</span>
-                  <div>
-                    <strong>Launch with milestones</strong>
-                    <p>Projects launch with milestone-based funding.</p>
-                  </div>
-                </div>
-                <div class="signal-card">
-                  <span class="signal-number">02</span>
-                  <div>
-                    <strong>Fund on Bitcoin</strong>
-                    <p>Angor is built for funding projects on Bitcoin.</p>
-                  </div>
-                </div>
-                <div class="signal-card">
-                  <span class="signal-number">03</span>
-                  <div>
-                    <strong>Release on proof</strong>
-                    <p>Funds are released when milestones are completed and approved.</p>
-                  </div>
-                </div>
+              <div class="hero-chips">
+                <span class="hero-chip">Milestone releases</span>
+                <span class="hero-chip">Backer approvals</span>
+                <span class="hero-chip">Protected treasury</span>
               </div>
             </div>
-          </section>
+
+            <section class="surface app-shell" id="product" aria-label="Angor interface preview">
+              <div class="shell-bar">
+                <div class="shell-dots" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="shell-title">Angor / Campaign workspace</div>
+                <div class="stage-tabs" aria-hidden="true">
+                  <span class="tab active">Overview</span>
+                  <span class="tab">Milestones</span>
+                  <span class="tab">Treasury</span>
+                  <span class="tab">Approvals</span>
+                </div>
+              </div>
+
+              <div class="app-body">
+                <div class="app-grid">
+                  <div class="panel">
+                    <div class="panel-kicker">How it works</div>
+                    <div class="panel-head">
+                      <div>
+                        <h2>Project funding</h2>
+                        <p>One surface for funding, milestone progress, and treasury control.</p>
+                      </div>
+                      <span class="status-chip">Mainnet live</span>
+                    </div>
+
+                    <div class="metric-row">
+                      <span class="mini-pill">Fund projects</span>
+                      <span class="mini-pill">Get funded</span>
+                      <span class="mini-pill">Bitcoin-native</span>
+                    </div>
+
+                    <div class="milestone-list">
+                      <div class="milestone">
+                        <div class="row">
+                          <div class="milestone-title">Campaign launched</div>
+                          <span class="mini-pill">Funding open</span>
+                        </div>
+                        <p>Projects can open funding directly on Bitcoin.</p>
+                        <div class="bar"><span style="width: 100%"></span></div>
+                      </div>
+
+                      <div class="milestone">
+                        <div class="row">
+                          <div class="milestone-title">Milestone proposed</div>
+                          <span class="mini-pill">Backer review</span>
+                        </div>
+                        <p>Updates and proof are attached to each release request.</p>
+                        <div class="bar"><span style="width: 74%"></span></div>
+                      </div>
+
+                      <div class="milestone">
+                        <div class="row">
+                          <div class="milestone-title">Treasury released</div>
+                          <span class="mini-pill">On approval</span>
+                        </div>
+                        <p>Funds move only when milestone conditions are met.</p>
+                        <div class="bar"><span style="width: 38%"></span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="side-stack">
+                    <div class="panel">
+                      <div class="panel-kicker">Campaign treasury</div>
+                      <div class="big-number">Milestone based</div>
+                      <div class="big-caption">Visible release state across the full campaign treasury.</div>
+                      <div class="breakdown">
+                        <div class="breakdown-row">
+                          <span>Released</span>
+                          <div class="bar"><span style="width: 28%"></span></div>
+                          <strong>Proof</strong>
+                        </div>
+                        <div class="breakdown-row">
+                          <span>Review</span>
+                          <div class="bar"><span style="width: 22%"></span></div>
+                          <strong>Backers</strong>
+                        </div>
+                        <div class="breakdown-row">
+                          <span>Locked</span>
+                          <div class="bar"><span style="width: 50%"></span></div>
+                          <strong>Protected</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel">
+                      <div class="panel-kicker">Backer approvals</div>
+                      <div class="panel-head">
+                        <div>
+                          <h3>Milestone release</h3>
+                          <p>Approval stays tied to visible project progress.</p>
+                        </div>
+                      </div>
+                      <div class="feature-list">
+                        <div class="feature-item">
+                          <span class="feature-number">01</span>
+                          <div>
+                            <strong>Project updates</strong>
+                            <p>Release requests stay attached to milestone evidence.</p>
+                          </div>
+                        </div>
+                        <div class="feature-item">
+                          <span class="feature-number">02</span>
+                          <div>
+                            <strong>Backer review</strong>
+                            <p>Approvals happen before treasury is unlocked.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
         </section>
-      </div>
-    </main>
 
-    <div class="container footer-note">
-      A simpler Angor landing page demo focused on the protocol itself.
+        <section class="section" id="surfaces">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <div class="section-kicker">Product surfaces</div>
+                <h2>Show the protocol through the interface.</h2>
+              </div>
+              <p>
+                The page sells Angor by showing the workflow itself: launch a campaign, inspect treasury state, and approve milestone releases.
+              </p>
+            </div>
+
+            <div class="showcase-grid">
+              <article class="surface showcase-card">
+                <div class="section-kicker">Launch</div>
+                <h3>Create a project campaign</h3>
+                <p>Define funding goals, milestone structure, and release conditions up front.</p>
+                <div class="mini-window">
+                  <div class="row">
+                    <span class="mini-pill">Campaign setup</span>
+                    <span class="mini-pill">Step 1</span>
+                  </div>
+                  <div class="mini-lines">
+                    <div class="mini-line"></div>
+                    <div class="mini-line mid"></div>
+                    <div class="mini-line short"></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="surface showcase-card">
+                <div class="section-kicker">Fund</div>
+                <h3>Back with clarity</h3>
+                <p>See what a project is raising for, which milestone comes next, and how treasury is protected.</p>
+                <div class="mini-window">
+                  <div class="row">
+                    <span class="mini-pill">Funding live</span>
+                    <span class="mini-pill">BTC</span>
+                  </div>
+                  <div class="mini-lines">
+                    <div class="mini-line"></div>
+                    <div class="mini-line"></div>
+                    <div class="mini-line mid"></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="surface showcase-card">
+                <div class="section-kicker">Approve</div>
+                <h3>Release treasury on progress</h3>
+                <p>Backer approvals turn milestone completion into treasury movement instead of blind trust.</p>
+                <div class="mini-window">
+                  <div class="row">
+                    <span class="mini-pill">Approval flow</span>
+                    <span class="mini-pill">Visible</span>
+                  </div>
+                  <div class="mini-lines">
+                    <div class="mini-line mid"></div>
+                    <div class="mini-line"></div>
+                    <div class="mini-line short"></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="container footer">
+        Product-led Angor concept with a cleaner SaaS-style direction.
+      </div>
     </div>
   </body>
 </html>
