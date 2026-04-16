@@ -4,10 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Angor | Decentralized Kickstarter</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta
       name="description"
       content="A product-led landing page demo for Angor: Bitcoin-native crowdfunding with milestone escrow, backer approvals, and serious project workflows."
     >
+    <script>
+      (function () {
+        var buildId = "b7235f8-cachefix";
+        var url = new URL(window.location.href);
+        if (url.searchParams.get("v") === buildId) {
+          return;
+        }
+        url.searchParams.set("v", buildId);
+        window.location.replace(url.toString());
+      })();
+    </script>
     <style>
       :root {
         color-scheme: dark;
