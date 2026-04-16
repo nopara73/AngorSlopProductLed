@@ -13,7 +13,7 @@
     >
     <script>
       (function () {
-        var buildId = "b7235f8-cachefix";
+        var buildId = "611b781-lean";
         var url = new URL(window.location.href);
         if (url.searchParams.get("v") === buildId) {
           return;
@@ -933,8 +933,7 @@
           </a>
           <nav class="topnav" aria-label="Primary">
             <a href="#product">Product</a>
-            <a href="#mechanics">Mechanics</a>
-            <a href="#flows">Workflow</a>
+            <a href="#control">Control</a>
             <a href="#launch" class="topnav-cta">Open Demo</a>
           </nav>
         </header>
@@ -947,24 +946,24 @@
               <span class="eyebrow">Bitcoin-native crowdfunding</span>
               <h1>DECENTRALIZED KICKSTARTER</h1>
               <p>
-                Angor turns funding into an operating system, not a leap of faith. Launch a campaign with milestone escrow, let backers fund in minutes, and release treasury only when proof of progress is on the table.
+                Launch with milestones. Fund with clarity. Release on proof.
               </p>
               <div class="hero-actions">
-                <a class="button button-primary" href="#launch">View Product Flow</a>
-                <a class="button button-secondary" href="#mechanics">See How It Works</a>
+                <a class="button button-primary" href="#product">View Product</a>
+                <a class="button button-secondary" href="#control">See Controls</a>
               </div>
               <div class="hero-metrics">
                 <div class="metric-card">
                   <strong>Milestone escrow</strong>
-                  <span>Capital stays structured from day one instead of disappearing into a wallet.</span>
+                  <span>Funds stay mapped to work.</span>
                 </div>
                 <div class="metric-card">
                   <strong>Backer approvals</strong>
-                  <span>Releases happen against evidence, updates, and transparent decision points.</span>
+                  <span>Releases happen on evidence.</span>
                 </div>
                 <div class="metric-card">
                   <strong>Serious builder UX</strong>
-                  <span>Campaigns look like products with workflows, controls, and measurable progress.</span>
+                  <span>Campaigns feel operational.</span>
                 </div>
               </div>
             </div>
@@ -1038,7 +1037,6 @@
                       <div>
                         <div class="meta-kicker">Live campaign</div>
                         <h2>Strata Wallet</h2>
-                        <p>Multisig hardware for teams that want treasury control without operational drag.</p>
                       </div>
                       <div class="status-pill">Funding Open</div>
                     </div>
@@ -1091,7 +1089,6 @@
                         <div class="panel">
                           <div class="panel-label">Treasury state</div>
                           <div class="treasury-number">9.4 BTC</div>
-                          <p>Every sat is mapped to a milestone, visible to backers, and released on evidence instead of promises.</p>
                           <div class="treasury-breakdown">
                             <div class="fund-row">
                               <span>Released</span>
@@ -1146,123 +1143,14 @@
           </div>
         </section>
 
-        <section class="workflow">
-          <div class="container workflow-grid">
-            <div class="workflow-card">
-              <strong>01</strong>
-              <h3>Launch with structure</h3>
-              <p>Define milestones, evidence checkpoints, and treasury release rules before the first pledge lands.</p>
-            </div>
-            <div class="workflow-card">
-              <strong>02</strong>
-              <h3>Backers fund with clarity</h3>
-              <p>Campaign pages explain where money sits, what gets unlocked next, and what happens if delivery slips.</p>
-            </div>
-            <div class="workflow-card">
-              <strong>03</strong>
-              <h3>Builders ship against milestones</h3>
-              <p>Updates feel operational, with proofs, files, demos, and release requests attached to real work.</p>
-            </div>
-            <div class="workflow-card">
-              <strong>04</strong>
-              <h3>Treasury moves on proof</h3>
-              <p>Capital flows as progress becomes legible, not because trust is assumed.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="mechanics">
-          <div class="container">
-            <div class="section-head">
-              <div>
-                <div class="eyebrow">Why it is legible instantly</div>
-                <h2>A funding model you can understand from the interface alone.</h2>
-              </div>
-              <p>
-                This page sells Angor by turning the mechanics into visible product surfaces: escrow state, release approvals, milestone evidence, and the builder-backer loop that keeps capital disciplined.
-              </p>
-            </div>
-
-            <div class="card-grid">
-              <article class="card">
-                <div class="panel-label">Escrow is visible</div>
-                <h3>Capital is segmented before it is spent.</h3>
-                <p>Instead of a single raised-total vanity number, Angor shows what is released, what is pending, and what remains protected.</p>
-                <div class="mini-ui">
-                  <div class="mini-ui-row">
-                    <div>
-                      <strong>Prototype release</strong>
-                      <span>Evidence accepted</span>
-                    </div>
-                    <span class="tag">1.8 BTC</span>
-                  </div>
-                  <div class="mini-ui-row">
-                    <div>
-                      <strong>Audit release</strong>
-                      <span>Vote in progress</span>
-                    </div>
-                    <span class="tag">2.2 BTC</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card">
-                <div class="panel-label">Backers get controls</div>
-                <h3>Funding comes with checkpoints, not blind optimism.</h3>
-                <p>Backers can see the request, inspect proof, and approve or reject releases with full context attached.</p>
-                <div class="mini-ui">
-                  <div class="mini-ui-row">
-                    <div>
-                      <strong>Release request open</strong>
-                      <span>Security review documents attached</span>
-                    </div>
-                    <span class="tag">72h left</span>
-                  </div>
-                  <div class="mini-ui-row">
-                    <div>
-                      <strong>Participation</strong>
-                      <span>Transparent voting and wallet-linked signal</span>
-                    </div>
-                    <span class="tag">42 votes</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card">
-                <div class="panel-label">Builders stay credible</div>
-                <h3>Updates feel like product execution, not campaign marketing.</h3>
-                <p>Each milestone turns into a workspace for specs, evidence, shipping notes, and financial state that serious backers can audit fast.</p>
-                <div class="mini-ui">
-                  <div class="mini-ui-row">
-                    <div>
-                      <strong>Firmware demo</strong>
-                      <span>Video, source diff, and checklist posted</span>
-                    </div>
-                    <span class="tag">Verified</span>
-                  </div>
-                  <div class="mini-ui-row">
-                    <div>
-                      <strong>Factory quote</strong>
-                      <span>Timeline updated with supplier terms</span>
-                    </div>
-                    <span class="tag">New</span>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
         <section class="section" id="product">
           <div class="container">
             <div class="section-head">
               <div>
                 <div class="eyebrow">Product-led showcase</div>
-                <h2>One workflow for builders. One source of truth for backers.</h2>
+                <h2>Show the workflow. Skip the speech.</h2>
               </div>
-              <p>
-                The core experience should feel more like a serious project operations tool than a typical crypto landing page. These surfaces show launch discipline, release control, and accountability at a glance.
-              </p>
+              <p>Three surfaces. Launch, prove, release.</p>
             </div>
 
             <div class="showcase-grid">
@@ -1281,21 +1169,21 @@
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Campaign thesis</strong>
-                        <span>Clear scope, target backers, and delivery narrative.</span>
+                        <span>Scope and target outcome.</span>
                       </div>
                     </div>
                     <div class="check-row">
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Milestone map</strong>
-                        <span>Prototype, audit, manufacturing, delivery.</span>
+                        <span>Prototype, audit, delivery.</span>
                       </div>
                     </div>
                     <div class="check-row">
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Funding rules</strong>
-                        <span>Release percentages attached to each checkpoint.</span>
+                        <span>Release % per checkpoint.</span>
                       </div>
                     </div>
                   </div>
@@ -1306,21 +1194,21 @@
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Evidence room</strong>
-                        <span>Specs, supplier docs, source links, and demos.</span>
+                        <span>Docs, demos, proofs.</span>
                       </div>
                     </div>
                     <div class="check-row">
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Progress updates</strong>
-                        <span>Operational status instead of promotional posts.</span>
+                        <span>Operational, not promotional.</span>
                       </div>
                     </div>
                     <div class="check-row">
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Release request</strong>
-                        <span>Ask for funds with proof bundled into the workflow.</span>
+                        <span>Request funds with proof attached.</span>
                       </div>
                     </div>
                   </div>
@@ -1331,21 +1219,21 @@
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Backer vote</strong>
-                        <span>Approvals and objections stay attached to the milestone.</span>
+                        <span>Approve or reject per milestone.</span>
                       </div>
                     </div>
                     <div class="check-row">
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Protected treasury</strong>
-                        <span>Unreleased funds remain visible and controlled.</span>
+                        <span>Unreleased funds stay locked.</span>
                       </div>
                     </div>
                     <div class="check-row">
                       <span class="check-mark">+</span>
                       <div>
                         <strong>Final release</strong>
-                        <span>Capital moves only after signal, proof, and timing line up.</span>
+                        <span>Capital moves after proof.</span>
                       </div>
                     </div>
                   </div>
@@ -1355,21 +1243,21 @@
                   <div class="roadmap-row">
                     <div>
                       <strong>Prototype milestone</strong>
-                      <span>Hardware rev A delivered, video posted, BOM reviewed.</span>
+                      <span>Rev A delivered.</span>
                     </div>
                     <span class="small-pill">Released</span>
                   </div>
                   <div class="roadmap-row">
                     <div>
                       <strong>Security audit milestone</strong>
-                      <span>Auditor statement and repo diff attached for voting.</span>
+                      <span>Evidence posted.</span>
                     </div>
                     <span class="small-pill">In vote</span>
                   </div>
                   <div class="roadmap-row">
                     <div>
                       <strong>Manufacturing milestone</strong>
-                      <span>Supplier terms preloaded, treasury still locked.</span>
+                      <span>Treasury locked.</span>
                     </div>
                     <span class="small-pill">Protected</span>
                   </div>
@@ -1379,42 +1267,40 @@
               <div class="stack">
                 <article class="mini-card">
                   <div class="panel-label">Backer view</div>
-                  <h3>Confidence is earned with visibility.</h3>
-                  <p>Backers do not need to decode jargon. They see treasury state, milestone evidence, and the exact request on screen.</p>
+                  <h3>Clear controls.</h3>
                   <div class="feed">
                     <div class="feed-row">
                       <span class="dot"></span>
                       <div>
                         <strong>Vote on release</strong>
-                        <span>Approve only if prototype proof matches the posted scope.</span>
+                        <span>Proof attached.</span>
                       </div>
                     </div>
                     <div class="feed-row">
                       <span class="dot"></span>
                       <div>
                         <strong>Track untouched funds</strong>
-                        <span>Capital for future milestones stays clearly protected.</span>
+                        <span>Future funds protected.</span>
                       </div>
                     </div>
                   </div>
                 </article>
 
-                <article class="mini-card">
+                <article class="mini-card" id="control">
                   <div class="panel-label">Operator quality</div>
-                  <h3>Designed to feel fast, structured, and difficult to fake.</h3>
-                  <p>The interface makes Angor read like software for disciplined fundraising, not a decorative crypto brochure.</p>
+                  <h3>Fast. Structured. Credible.</h3>
                   <div class="mini-ui">
                     <div class="mini-ui-row">
                       <div>
                         <strong>Project setup</strong>
-                        <span>Milestones, releases, proof requirements, refunds</span>
+                        <span>Milestones, releases, refunds</span>
                       </div>
                       <span class="tag">Structured</span>
                     </div>
                     <div class="mini-ui-row">
                       <div>
                         <strong>Backer experience</strong>
-                        <span>Transparent progress, approvals, and treasury visibility</span>
+                        <span>Progress, approvals, treasury</span>
                       </div>
                       <span class="tag">Clear</span>
                     </div>
@@ -1425,62 +1311,58 @@
           </div>
         </section>
 
-        <section class="section" id="flows">
+        <section class="section" id="launch">
           <div class="container">
             <div class="section-head">
               <div>
-                <div class="eyebrow">Focused capabilities</div>
-                <h2>Everything a serious crowdfunding protocol needs, without the fluff.</h2>
+                <div class="eyebrow">Core loop</div>
+                <h2>Fund. Build. Approve. Release.</h2>
               </div>
-              <p>
-                The pitch is stronger when the page stays disciplined. These are the few ideas that matter: launch clearly, fund credibly, release carefully, and keep risk visible at all times.
-              </p>
+              <p>Visible mechanics, not marketing copy.</p>
             </div>
 
             <div class="feature-grid">
               <article class="feature-card">
-                <div class="panel-label">01 Launch</div>
-                <h3>Builder-ready campaign setup</h3>
-                <p>Projects launch with structured milestones, documented deliverables, and explicit release logic from the start.</p>
-                <div class="feature-metric">Milestone-first configuration</div>
+                <div class="panel-label">01</div>
+                <h3>Launch</h3>
+                <p>Define milestones.</p>
+                <div class="feature-metric">Structured start</div>
               </article>
               <article class="feature-card">
-                <div class="panel-label">02 Fund</div>
-                <h3>Bitcoin-native funding flow</h3>
-                <p>Funding feels direct, modern, and easy to reason about without reducing everything to a speculative story.</p>
-                <div class="feature-metric">Serious backer onboarding</div>
+                <div class="panel-label">02</div>
+                <h3>Fund</h3>
+                <p>Back capital with clarity.</p>
+                <div class="feature-metric">BTC-native</div>
               </article>
               <article class="feature-card">
-                <div class="panel-label">03 Govern</div>
-                <h3>Evidence-backed approvals</h3>
-                <p>Each release request is attached to proof, timing, and community signal so decisions remain grounded in progress.</p>
-                <div class="feature-metric">Proof before treasury movement</div>
+                <div class="panel-label">03</div>
+                <h3>Approve</h3>
+                <p>Vote on proof.</p>
+                <div class="feature-metric">Evidence first</div>
               </article>
               <article class="feature-card">
-                <div class="panel-label">04 Protect</div>
-                <h3>Remaining funds stay visible</h3>
-                <p>Unreleased treasury never becomes ambiguous. Backers can always see what is still locked and why.</p>
-                <div class="feature-metric">Protected until milestone completion</div>
+                <div class="panel-label">04</div>
+                <h3>Release</h3>
+                <p>Unlock on completion.</p>
+                <div class="feature-metric">Protected treasury</div>
               </article>
             </div>
           </div>
         </section>
 
-        <section class="cta" id="launch">
+        <section class="cta">
           <div class="container">
             <div class="cta-panel">
               <div class="cta-grid">
                 <div>
                   <div class="eyebrow">Demo landing page</div>
-                  <h2>Angor, redesigned as a product people trust in one screen.</h2>
-                  <p>
-                    This concept trades generic crypto signaling for visible mechanics, strong hierarchy, and premium SaaS execution. It is built to show the founder a sharper direction for how Angor could sell itself.
-                  </p>
-                  <div class="footer-note">Single-file demo. Ready to iterate into a fuller marketing site or product microsite.</div>
+                  <h2>Serious product. Serious backers.</h2>
+                  <p>Less explanation. More interface.</p>
+                  <div class="footer-note">Built as a cleaner, more visual founder demo.</div>
                 </div>
                 <div class="hero-actions">
                   <a class="button button-primary" href="#top">Replay Hero</a>
-                  <a class="button button-secondary" href="#product">Review Product Surfaces</a>
+                  <a class="button button-secondary" href="#product">Review Surfaces</a>
                 </div>
               </div>
             </div>
